@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>New Deal infos</h2>
+
+<mat-dialog-content>
+  <div class="deal-dialog">
+    <mat-form-field>
+      <mat-label>Deal Name</mat-label>
+      <input
+        cdkFocusInitial
+        matInput
+        [(ngModel)]="dealName"
+        placeholder="Enter deal name"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Deal Price</mat-label>
+      <span matTextPrefix>{{ dealPrice() ? "$" : "" }}</span>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter deal price"
+        [(ngModel)]="dealPrice"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Deal Address</mat-label>
+      <input
+        matInput
+        placeholder="Enter deal address"
+        required
+        [(ngModel)]="dealAddress"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Deal NOI</mat-label>
+      <span matTextPrefix>{{ dealNoi() ? "$" : "" }}</span>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter deal noi"
+        required
+        [(ngModel)]="dealNoi"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Deal Cap Rate</mat-label>
+      <span matTextPrefix>{{ dealCapRate() ? "%" : "" }}</span>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter deal cap rate"
+        [(ngModel)]="dealCapRate"
+      />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    (click)="addNewDeal()"
+    [disabled]="!(dealName() && dealPrice() && dealAddress() && dealNoi())"
+  >
+    Add
+  </button>
+</mat-dialog-actions>
